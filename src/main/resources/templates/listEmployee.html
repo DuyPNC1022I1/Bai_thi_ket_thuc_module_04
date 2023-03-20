@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        img {
+            height: 120px;
+            width: 150px;
+        }
+
+        th, td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="Menu" role="navigation">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand">Menu</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" th:href="@{/}">Home page</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                Action
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" th:href="@{/getByAgeAsc}">Show list employees by age Asc</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex" th:action="@{/search}" method="get">
+                        <input class="form-control me-2" type="text" name="search" placeholder="Search by name"
+                               aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="content">
+        <table class="table table-striped" style="text-align: center">
+            <thead>
+            <tr>
+                <th colspan="8" style="text-align: center; font-size: 30px">LIST EMPLOYEE</th>
+            </tr>
+            <tr>
+                <th scope="col">EmployeeCode</th>
+                <th scope="col">Name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Salary($)</th>
+                <th scope="col">Department</th>
+                <th scope="col" colspan="2">Action</th>
+            </tr>
+            </thead>`
+            <tbody>
+            <tr th:each="e,eStat: ${employees}">
+                <td scope="row" th:text="${e.employeeCode}"></td>
+                <td scope="row"><a th:text="${e.name}" th:href="@{/viewDetail/{id}(id=${e.id})}"></a></td>
+                <td scope="row" th:text="${e.age}"></td>
+                <td scope="row" th:text="${e.salary}"></td>
+                <td scope="row">
+                    <span th:text="${e.brand.name}"></span>
+                </td>
+                <td><a th:href="@{/update/{id}(id=${e.id})}">
+                    <button onclick="alert('Do you want to Update???')" class="btn btn-warning">Update</button>
+                </a></td>
+                <td><a th:href="@{/delete/{id}(id=${e.id})}">
+                    <button onclick="alert('Do you want to Delete???')" class="btn btn-danger">Delete</button>
+                </a></td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="buttonCreate">
+            <a th:href="@{/create}">
+                <button class="btn btn-success">Create new Employee</button>
+            </a>
+        </div>
+    </div>
+    <div class="footer">
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
