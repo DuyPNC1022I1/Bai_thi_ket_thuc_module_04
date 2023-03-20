@@ -41,4 +41,9 @@ public class EmployeeService implements Icrud<Employee> {
     public Iterable<Employee> findAllByName(String name) {
         return employeeRepository.findAllByNameContaining(name);
     }
+
+    @Override
+    public Iterable<Employee> findAllByBrand(String brand) {
+        return employeeRepository.findAllByBrand_Name(brand);
+    }
 }

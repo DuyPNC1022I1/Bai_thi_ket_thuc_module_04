@@ -10,4 +10,5 @@ public interface Icrud<T>{
     void delete(Long id);
     Iterable<T> getAllByAgeAsc();
     Iterable<T> findAllByName(String name);
+    Iterable<T> findAllByBrand(String name);
 }

@@ -41,4 +41,9 @@ public class BrandService implements Icrud<Brand>{
     public Iterable<Brand> findAllByName(String name) {
         return null;
     }
+
+    @Override
+    public Iterable<Brand> findAllByBrand(String name) {
+        return null;
+    }
 }

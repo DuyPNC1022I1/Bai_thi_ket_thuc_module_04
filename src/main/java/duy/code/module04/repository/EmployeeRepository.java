@@ -10,4 +10,5 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     Iterable<Employee> findAllByNameContaining(String name);
     @Query("SELECT e FROM Employee e ORDER BY e.age Asc")
     Iterable<Employee> getAllByAgeAsc();
+    Iterable<Employee> findAllByBrand_Name(String brand);
 }

@@ -66,7 +66,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/search")
-    public ModelAndView searchByName(@RequestParam("search") String name, Pageable pageable) {
+    public ModelAndView searchByName(@RequestParam("search") String name) {
         ModelAndView modelAndView = new ModelAndView("listEmployee");
         modelAndView.addObject("employees", employeeService.findAllByName(name));
         return modelAndView;
@@ -84,6 +84,13 @@ public class EmployeeController {
     public ModelAndView viewDetail(@PathVariable("id") Long id) {
         ModelAndView modelAndView = new ModelAndView("detail");
         modelAndView.addObject("employee", employeeService.findById(id).get());
+        return modelAndView;
+    }
+
+    @GetMapping("/searchByBrand")
+    public ModelAndView searchByBrand(@RequestParam("search") String brand) {
+        ModelAndView modelAndView = new ModelAndView("listEmployee");
+        modelAndView.addObject("employees", employeeService.findAllByBrand(brand));
         return modelAndView;
     }
 }
